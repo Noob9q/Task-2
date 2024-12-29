@@ -1,54 +1,29 @@
-public class Student {
-        private String name;
-        private String surname;
-        private int age;
-        private boolean gender;
-        private int id_gen;
-        private static int id=1;
+import java.util.List;
+import java.util.ArrayList;
+public class Student extends Person {
+    private static int id=0;
+    private int id_gen;
+    private List<Integer> grades = new ArrayList<>();
+    public void addGrade(int grade) {
+        grades.add(grade);
+    }
 
-        public Student(){
-            id_gen=id++;
+    public Student(String name, String surname, int age, boolean gender) {
+        super(name, surname, age, gender);
+        this.id_gen = id++;
+    }
+    double GPA;
+    public void GPA() {
+        double sum=0;
+        for(Integer grade:grades) {
+            sum += grade;
         }
-        public double GPA;
-        public void setGPA(int GPA){
-            this.GPA=GPA;
-        }
-        public double getGPA(){
-            return GPA;
-        }
-        public Student(String name, String surname, int age, boolean gender, double GPA) {
-            this();
-            this.name = name;
-            this.surname = surname;
-            this.age = age;
-            this.gender = gender;
-            this.GPA = GPA;
-        }
-        public String getName() {
-            return name;
-        }
-        public String getSurname() {
-            return surname;
-        }
-
-        public int getAge() {
-            return age;
-        }
-
-        public void setAge(int age) {
-            this.age = age;
-        }
-        public boolean isGender() {
-            return gender;
-        }
-        public void setGender(boolean gender) {
-            this.gender = gender;
-        }
-
-
-        public String toString() {
-            return "I'm student with id "+id_gen+" "+ name+ " "+ surname+
-                    "\nyears old "+age+" GPA is: "+GPA/4+" "+(gender? "male":"female");
+        this.GPA = sum/grades.size();
+    }
+    int x1=0;
+    public String toString() {
+            return super.toString()+" I'm student "+id+
+                    "\nmy GPA is: "+GPA;
         }
     }
 
